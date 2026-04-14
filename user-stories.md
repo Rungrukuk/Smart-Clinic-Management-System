@@ -54,7 +54,16 @@ _As an admin, I want to add a doctor to the portal, so that patients can view an
 ---
 
 **Title:** Delete Doctor Profile
+_As an admin, I want to update doctors profile._
 
+**Acceptance Criteria:**
+1. The admin will be able to update doctor's fields through frontend
+2. The system must validate that only authenticated admins (via token) can update doctor profiles; unauthorized requests must be rejected with an appropriate error message.
+3. When updating a doctor, only valid and non-null fields should be modified, while existing data remains unchanged for fields not provided in the request.
+
+**Priority:** Medium
+**Story Points:** 4
+**Notes:**
 
 **Title:** View Appointment Statistics
 

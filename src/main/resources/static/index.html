@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Clinic Management System</title>
+    <link rel="icon" href="./assets/images/logo/logo.png" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container" id="container">
+        <div class="wrapper" id="wrapper">
+
+            <div id="header"></div>
+
+            <main class="main-content">
+                <section id="role-section">
+                    <h2 id="role-heading">Select Your Role</h2>
+                    <div id="role-buttons">
+                        <button id="adminBtn">Admin</button>
+                        <button id="doctorBtn">Doctor</button>
+                        <button id="patientBtn">Patient</button>
+                    </div>
+                </section>
+            </main>
+
+            <div id="footer"></div>
+
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="./js/util.js" defer></script>
+    <script src="./js/render.js" defer></script>
+    <script src="./js/components/header.js" defer></script>
+    <script src="./js/components/footer.js" defer></script>
+    <script type="module" src="./js/components/modals.js"></script>
+    <script type="module" src="./js/services/index.js" defer></script>
+</body>
+</html>

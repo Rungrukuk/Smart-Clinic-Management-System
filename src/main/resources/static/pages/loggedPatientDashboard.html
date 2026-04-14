@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Patient Dashboard</title>
+    <link rel="icon" href="../assets/images/logo/logo.png" />
+
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/adminDashboard.css" />
+    <link rel="stylesheet" href="../assets/css/patientDashboard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+
+    <script src="../js/util.js" defer></script>
+    <script src="../js/render.js" defer></script>
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+    <script type="module" src="../js/components/modals.js"></script>
+</head>
+<body>
+
+    <div class="container" id="container">
+        <div class="wrapper" id="wrapper">
+
+            <div id="header"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="patient-topbar">
+                    <p class="patient-welcome">
+                        Welcome back, <span id="patientDisplayName">—</span>
+                    </p>
+                    <button class="adminBtn"
+                            onclick="window.location.href='patientAppointment.html'">
+                        My Appointments
+                    </button>
+                </div>
+
+                <div class="search-section" id="searchSection">
+                    <input
+                        type="text"
+                        id="searchBar"
+                        class="searchBar"
+                        placeholder="Search by doctor name"
+                    />
+                </div>
+
+                <div class="filter-section" id="filterSection">
+                    <div class="filter-wrapper">
+                        <select class="filter-select" id="filterTime">
+                            <option value="">Filter by Time</option>
+                            <option value="am">AM</option>
+                            <option value="pm">PM</option>
+                        </select>
+                        <select class="filter-select" id="filterSpecialty">
+                            <option value="">Filter by Specialty</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="dermatology">Dermatology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="pediatrics">Pediatrics</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="content"></div>
+
+            </main>
+
+            <div id="footer"></div>
+
+        </div>
+    </div>
+
+    <div class="modalApp-backdrop" id="modalAppBackdrop"></div>
+    <div class="modalApp" id="modalApp">
+        <div id="modalApp-body"></div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <div class="ripple-overlay" id="rippleOverlay"></div>
+
+    <script src="../js/util.js" defer></script>
+    <script src="../js/render.js" defer></script>
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+    <script type="module" src="../js/components/modals.js"></script>
+    <script type="module" src="../js/loggedPatient.js" defer></script>
+</body>
+</html>

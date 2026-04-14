@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="icon" th:href="@{/assets/images/logo/logo.png}" />
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container" id="container">
+        <div class="wrapper" id="wrapper">
+
+            <div id="header"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <nav class="tab-nav">
+                    <button class="tab-btn active" onclick="switchTab('doctors')">Doctors</button>
+                    <button class="tab-btn" onclick="switchTab('patients')">Patients</button>
+                    <button class="tab-btn" onclick="switchTab('appointments')">Appointments</button>
+                    <button class="tab-btn" onclick="switchTab('reports')">Reports</button>
+                </nav>
+
+                <div id="tab-doctors" class="tab-panel active">
+
+                    <div class="tab-toolbar">
+                        <div class="search-section">
+                            <input type="text" id="searchBar" placeholder="Search by doctor name" />
+                        </div>
+                        <button class="button" id="addDocBtn">+ Add Doctor</button>
+                    </div>
+
+                    <div class="filter-section">
+                        <select id="sortTime">
+                            <option value="">Sort by Time</option>
+                            <option value="am">AM</option>
+                            <option value="pm">PM</option>
+                        </select>
+                        <select id="filterSpecialty">
+                            <option value="">Filter by Specialty</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="dermatology">Dermatology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="pediatrics">Pediatrics</option>
+                        </select>
+                    </div>
+
+                    <div id="content"></div>
+                </div>
+
+                <div id="tab-patients" class="tab-panel">
+                    <div class="data-table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                </tr>
+                            </thead>
+                            <tbody id="patientTableBody">
+                                <tr><td colspan="5" class="noPatientRecord">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="tab-appointments" class="tab-panel">
+                    <div class="data-table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Date &amp; Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentTableBody">
+                                <tr><td colspan="5" class="noPatientRecord">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="tab-reports" class="tab-panel">
+
+                    <h3 style="color:var(--text-primary);font-family:var(--font-display);margin-bottom:1rem;">
+                        Daily Appointment Report
+                    </h3>
+                    <div class="report-controls">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="reportDate" class="input-field" />
+                        </div>
+                        <button class="button" onclick="loadDailyReport()">Run Report</button>
+                    </div>
+                    <div class="report-result" id="dailyReportResult" style="margin-bottom:2rem;display:none;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Doctor</th>
+                                    <th>Appointment Time</th>
+                                    <th>Status</th>
+                                    <th>Patient</th>
+                                    <th>Patient Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dailyReportBody"></tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="color:var(--text-primary);font-family:var(--font-display);margin-bottom:1rem;">
+                        Top Doctor by Month
+                    </h3>
+                    <div class="report-controls">
+                        <div class="form-group">
+                            <label>Month</label>
+                            <input type="number" id="reportMonth" class="input-field"
+                                   min="1" max="12" placeholder="e.g. 4" style="width:120px;" />
+                        </div>
+                        <div class="form-group">
+                            <label>Year</label>
+                            <input type="number" id="reportMonthYear" class="input-field"
+                                   placeholder="e.g. 2025" style="width:140px;" />
+                        </div>
+                        <button class="button" onclick="loadTopDoctorMonth()">Run Report</button>
+                    </div>
+                    <div id="topDoctorMonthResult" style="color:var(--text-secondary);margin-bottom:2rem;"></div>
+
+                    <h3 style="color:var(--text-primary);font-family:var(--font-display);margin-bottom:1rem;">
+                        Top Doctor by Year
+                    </h3>
+                    <div class="report-controls">
+                        <div class="form-group">
+                            <label>Year</label>
+                            <input type="number" id="reportYear" class="input-field"
+                                   placeholder="e.g. 2025" style="width:140px;" />
+                        </div>
+                        <button class="button" onclick="loadTopDoctorYear()">Run Report</button>
+                    </div>
+                    <div id="topDoctorYearResult" style="color:var(--text-secondary);"></div>
+
+                </div>
+
+            </main>
+
+            <div id="footer"></div>
+
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/util.js}" defer></script>
+    <script th:src="@{/js/render.js}" defer></script>
+    <script th:src="@{/js/components/header.js}" defer></script>
+    <script th:src="@{/js/components/footer.js}" defer></script>
+    <script type="module" th:src="@{/js/components/modals.js}"></script>
+    <script type="module" th:src="@{/js/adminDashboard.js}" defer></script>
+</body>
+</html>

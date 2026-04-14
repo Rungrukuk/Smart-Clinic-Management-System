@@ -1,0 +1,248 @@
+.card-actions {
+  background-color: var(--bg-actions);
+  text-align: center;
+  padding: 0.85rem 1.25rem;
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  transition: var(--transition);
+}
+
+.card-actions:hover {
+  background-color: var(--bg-actions-hover);
+}
+
+.card-actions .button,
+.card-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.4rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(14, 165, 200, 0.3);
+  transition: var(--transition);
+}
+
+.card-actions .button:hover,
+.card-actions button:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 20px rgba(14, 165, 200, 0.45);
+  transform: translateY(-1px);
+}
+
+.card-actions .button:active,
+.card-actions button:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+
+.ripple-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(14, 165, 200, 0.18);
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  z-index: 9999;
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity   0.6s ease,
+    width     0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    height    0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+}
+
+.ripple-overlay.active {
+  width: 300vmax;
+  height: 300vmax;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.ripple-overlay.fade-out {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.modalApp {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%;
+  max-width: 560px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: 2rem 2rem 2.5rem;
+  z-index: 1100;
+  box-shadow: var(--shadow-modal);
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modalApp.active {
+  transform: translateX(-50%) translateY(0);
+}
+
+.modalApp::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: var(--border);
+  border-radius: 99px;
+  margin: 0 auto 1.5rem;
+}
+
+.modalApp h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  text-align: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.modalApp-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 12, 22, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1099;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modalApp-backdrop.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modalApp input,
+.modalApp select,
+.modalApp textarea {
+  display: block;
+  margin: 0 auto 1rem;
+  width: 90%;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.modalApp input::placeholder,
+.modalApp textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.modalApp input:hover,
+.modalApp select:hover,
+.modalApp textarea:hover {
+  border-color: var(--accent);
+}
+
+.modalApp input:focus,
+.modalApp select:focus,
+.modalApp textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  background: var(--bg-card-hover);
+}
+
+.modalApp select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238fa3c0' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 1rem) center;
+  color-scheme: dark;
+}
+
+.modalApp select option {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.modalApp label {
+  display: block;
+  width: 90%;
+  margin: 0 auto 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.confirm-btn {
+  display: block;
+  margin: 1.5rem auto 0;
+  width: 90%;
+  padding: 0.85rem 1.5rem;
+  background-color: var(--confirm-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: var(--transition);
+}
+
+.confirm-btn:hover {
+  background-color: var(--confirm-hover);
+  filter: brightness(1.2);
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(14, 165, 200, 0.2);
+}
+
+.confirm-btn:active {
+  transform: scale(0.98);
+  filter: brightness(1);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+@media (max-width: 768px) {
+  .modalApp {
+    max-width: 100%;
+    padding: 1.5rem 1rem 2rem;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .modalApp input,
+  .modalApp select,
+  .modalApp textarea,
+  .modalApp label,
+  .confirm-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-actions { padding: 0.7rem 1rem; }
+  .confirm-btn  { font-size: 0.875rem; padding: 0.75rem; }
+}

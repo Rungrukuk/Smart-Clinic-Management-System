@@ -24,7 +24,7 @@ public class Appointment {
 
     @ManyToOne
     @NotNull
-    @JsonIgnoreProperties({ "password", "availableTimes", "failedLoginAttempts", "locked" })
+    @JsonIgnoreProperties({ "password", "availableTimes" })
     private Doctor doctor;
 
     @ManyToOne

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Appointment</title>
+    <link rel="icon" href="../assets/images/logo/logo.png" />
+
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/adminDashboard.css" />
+    <link rel="stylesheet" href="../assets/css/updateAppointment.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+
+    <script src="../js/util.js" defer></script>
+    <script src="../js/render.js" defer></script>
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+</head>
+<body>
+
+    <div class="container" id="container">
+        <div class="wrapper" id="wrapper">
+
+            <div id="header"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-heading">
+                    <img src="../assets/images/edit/edit.png" alt="Edit Icon" class="page-icon" />
+                    <h2>Update Appointment</h2>
+                </div>
+
+                <div class="update-form-wrapper">
+                    <form id="updateAppointmentForm" class="update-form">
+
+                        <div class="form-group">
+                            <label for="appointmentId">Appointment ID</label>
+                            <input
+                                type="text"
+                                id="appointmentId"
+                                class="input-field"
+                                placeholder="Appointment ID"
+                                readonly
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="doctorName">Doctor</label>
+                            <input
+                                type="text"
+                                id="doctorName"
+                                class="input-field"
+                                placeholder="Doctor name"
+                                readonly
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="appointmentDate">Date</label>
+                            <input
+                                type="date"
+                                id="appointmentDate"
+                                class="input-field"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="appointmentTime">Preferred Time</label>
+                            <select id="appointmentTime" class="input-field select-dropdown">
+                                <option value="">Select time</option>
+                                <option value="am">AM</option>
+                                <option value="pm">PM</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="appointmentStatus">Status</label>
+                            <select id="appointmentStatus" class="input-field select-dropdown">
+                                <option value="pending">Pending</option>
+                                <option value="consulted">Consulted</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="appointmentNotes">Notes</label>
+                            <textarea
+                                id="appointmentNotes"
+                                class="input-field"
+                                placeholder="Any additional notes..."
+                                rows="4"
+                            ></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="button" onclick="submitUpdate()">
+                                Save Changes
+                            </button>
+                            <button type="button" class="adminBtn" onclick="history.back()">
+                                Cancel
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </main>
+
+            <div id="footer"></div>
+
+        </div>
+    </div>
+    <script src="../js/util.js" defer></script>
+    <script src="../js/render.js" defer></script>
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+    <script type="module" src="../js/updateAppointment.js" defer></script>
+    
+</body>
+</html>

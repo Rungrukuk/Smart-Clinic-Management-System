@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Prescription</title>
+    <link rel="icon" href="../assets/images/logo/logo.png" />
+
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/adminDashboard.css" />
+    <link rel="stylesheet" href="../assets/css/addPrescription.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+
+    <script src="../js/util.js" defer></script>
+    <script src="../js/render.js" defer></script>
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+</head>
+<body>
+
+    <div class="container" id="container">
+        <div class="wrapper" id="wrapper">
+
+            <div id="header"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-heading">
+                    <img src="../assets/images/addPrescriptionIcon/addPrescription.png" alt="Prescription Icon" class="page-icon" />
+                    <h2>Add Prescription</h2>
+                </div>
+
+                <div class="prescription-form-wrapper">
+                    <form id="prescriptionForm" class="prescription-form">
+
+                        <div class="form-group">
+                            <label for="appointmentId">Appointment ID</label>
+                            <input
+                                type="text"
+                                id="appointmentId"
+                                class="input-field"
+                                placeholder="Appointment ID"
+                                readonly
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="patientName">Patient Name</label>
+                            <input
+                                type="text"
+                                id="patientName"
+                                class="input-field"
+                                placeholder="Patient name"
+                                readonly
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="medication">Medication</label>
+                            <input
+                                type="text"
+                                id="medication"
+                                class="input-field"
+                                placeholder="Enter medication name"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dosage">Dosage</label>
+                            <input
+                                type="text"
+                                id="dosage"
+                                class="input-field"
+                                placeholder="e.g. 500mg twice daily"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="doctorNotes">Doctor Notes</label>
+                            <textarea
+                                id="doctorNotes"
+                                class="input-field"
+                                placeholder="Any additional notes for the patient..."
+                                rows="4"
+                            ></textarea>
+                        </div>
+
+                        <button type="button" class="button" onclick="submitPrescription()">
+                            Save Prescription
+                        </button>
+
+                    </form>
+                </div>
+
+            </main>
+
+            <div id="footer"></div>
+
+        </div>
+    </div>
+
+    <script src="../js/util.js" defer></script>
+    <script src="../js/render.js" defer></script>
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+    <script type="module" src="../js/addPrescription.js" defer></script>
+
+</body>
+</html>
