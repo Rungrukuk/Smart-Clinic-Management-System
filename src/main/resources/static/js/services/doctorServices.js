@@ -93,14 +93,23 @@ export async function getDoctorAvailability(doctorId, date, token) {
   }
 }
 
-export async function filterDoctors(name) {
+export async function filterDoctors(name, specialty, time) {
   try {
+    const params = new URLSearchParams();
+
+    if (name && name !== 'null') params.append('name', name);
+    if (specialty && specialty !== 'null') params.append('specialty', specialty);
+    if (time && time !== 'null') params.append('time', time);
+
     const response = await fetch(
-      `${DOCTOR_API}/filter/${name}`
+      `${DOCTOR_API}/filter?${params.toString()}`
     );
+
     if (!response.ok) return [];
+
     const data = await response.json();
     return data.doctors || [];
+
   } catch (error) {
     console.error('Error filtering doctors:', error);
     return [];

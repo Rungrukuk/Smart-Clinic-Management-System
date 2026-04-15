@@ -86,8 +86,45 @@ public class DoctorService {
         }
     }
 
-    public ResponseEntity<Map<String, Object>> filterDoctors(String name) {
-        return ResponseEntity.ok(filterDoctorsByName(name));
+    public ResponseEntity<Map<String, Object>> filterDoctorsByName(String name) {
+        List<Doctor> doctors = doctorRepository.findByNameLike(name);
+        return ResponseEntity.ok(Map.of("doctors", doctors));
+    }
+
+    public ResponseEntity<Map<String, Object>> filterDoctors(
+            String name,
+            String specialty,
+            String time) {
+
+        List<Doctor> doctors;
+
+        boolean hasName = name != null && !name.equalsIgnoreCase("null") && !name.isBlank();
+        boolean hasSpecialty = specialty != null && !specialty.equalsIgnoreCase("null") && !specialty.isBlank();
+        boolean hasTime = time != null && !time.equalsIgnoreCase("null") && !time.isBlank();
+
+        if (hasSpecialty && hasTime) {
+            doctors = doctorRepository.findBySpecialtyAndTime(specialty, time);
+        }
+
+        else if (hasSpecialty) {
+            doctors = doctorRepository.findBySpecialtyIgnoreCase(specialty);
+        }
+
+        else if (hasName) {
+            doctors = doctorRepository.findByNameLike(name);
+        }
+
+        else {
+            doctors = doctorRepository.findAll();
+        }
+
+        if (hasName && (hasSpecialty || hasTime)) {
+            doctors = doctors.stream()
+                    .filter(d -> d.getName().toLowerCase().contains(name.toLowerCase()))
+                    .toList();
+        }
+
+        return ResponseEntity.ok(Map.of("doctors", doctors));
     }
 
     public List<String> getDoctorAvailability(Long doctorId, LocalDate date) {
@@ -116,10 +153,5 @@ public class DoctorService {
         }
 
         return availableSlots;
-    }
-
-    private Map<String, Object> filterDoctorsByName(String name) {
-        List<Doctor> doctors = doctorRepository.findByNameLike(name);
-        return Map.of("doctors", doctors);
     }
 }

@@ -57,6 +57,15 @@ public class DoctorController {
         @GetMapping("/filter/{name}")
         public ResponseEntity<Map<String, Object>> filterDoctors(
                         @PathVariable String name) {
-                return doctorService.filterDoctors(name);
+                return doctorService.filterDoctorsByName(name);
+        }
+
+        @GetMapping("/filter")
+        public ResponseEntity<Map<String, Object>> filterDoctors(
+                        @RequestParam(required = false) String name,
+                        @RequestParam(required = false) String specialty,
+                        @RequestParam(required = false) String time) {
+
+                return doctorService.filterDoctors(name, specialty, time);
         }
 }

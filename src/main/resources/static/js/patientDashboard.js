@@ -103,16 +103,41 @@ function renderDoctors(doctors) {
 }
 
 function setupFilters() {
-  const btn = document.getElementById('doctorSearchBtn');
-  if (btn) btn.addEventListener('click', applyDoctorFilter);
+  const specialty = document.getElementById('filterSpecialty');
+  const time = document.getElementById('filterTime');
+  const name = document.getElementById('searchBar');
+
+  if (specialty) {
+    specialty.addEventListener('change', applyDoctorFilter);
+  }
+
+  if (time) {
+    time.addEventListener('change', applyDoctorFilter);
+  }
+
+  if (name) {
+    name.addEventListener('input', debounce(applyDoctorFilter, 300));
+  }
 }
+
 
 async function applyDoctorFilter() {
   const name = document.getElementById('searchBar').value || 'null';
+  const specialty = document.getElementById('filterSpecialty').value || 'null';
+  const time = document.getElementById('filterTime').value || 'null';
 
-  const doctors = await filterDoctors(name);
+  const doctors = await filterDoctors(name, specialty, time);
   renderDoctors(doctors);
 }
+
+function debounce(fn, delay) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn(...args), delay);
+  };
+}
+
 
 function handleBookDoctor(doctor) {
   if (!isLoggedInPatient()) {

@@ -20,4 +20,13 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
         List<Doctor> findByNameLike(@Param("name") String name);
 
         List<Doctor> findBySpecialtyIgnoreCase(String specialty);
+
+        @Query("SELECT DISTINCT d FROM Doctor d " +
+                        "JOIN d.availableTimes t " +
+                        "WHERE LOWER(d.specialty) = LOWER(:specialty) " +
+                        "AND t LIKE CONCAT(:time, '%')")
+        List<Doctor> findBySpecialtyAndTime(
+                        @Param("specialty") String specialty,
+                        @Param("time") String time);
+
 }

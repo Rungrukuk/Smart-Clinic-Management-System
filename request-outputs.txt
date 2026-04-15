@@ -1,0 +1,658 @@
+Get All Doctors:
+{
+    "doctors": [
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "11:00-12:00",
+                "14:00-15:00"
+            ],
+            "email": "dr.adams@example.com",
+            "id": 1,
+            "name": "Dr. Emily Adams",
+            "phone": "555-101-2020",
+            "specialty": "Cardiologist"
+        },
+        {
+            "availableTimes": [
+                "10:00-11:00",
+                "11:00-12:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.johnson@example.com",
+            "id": 2,
+            "name": "Dr. Mark Johnson",
+            "phone": "555-202-3030",
+            "specialty": "Neurologist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "11:00-12:00",
+                "14:00-15:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.lee@example.com",
+            "id": 3,
+            "name": "Dr. Sarah Lee",
+            "phone": "555-303-4040",
+            "specialty": "Orthopedist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "15:00-16:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.wilson@example.com",
+            "id": 4,
+            "name": "Dr. Tom Wilson",
+            "phone": "555-404-5050",
+            "specialty": "Pediatrician"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.brown@example.com",
+            "id": 5,
+            "name": "Dr. Alice Brown",
+            "phone": "555-505-6060",
+            "specialty": "Dermatologist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "11:00-12:00",
+                "14:00-15:00"
+            ],
+            "email": "dr.taylor@example.com",
+            "id": 6,
+            "name": "Dr. Taylor Grant",
+            "phone": "555-606-7070",
+            "specialty": "Cardiologist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "15:00-16:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.white@example.com",
+            "id": 7,
+            "name": "Dr. Sam White",
+            "phone": "555-707-8080",
+            "specialty": "Neurologist"
+        },
+        {
+            "availableTimes": [
+                "10:00-11:00",
+                "11:00-12:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.clark@example.com",
+            "id": 8,
+            "name": "Dr. Emma Clark",
+            "phone": "555-808-9090",
+            "specialty": "Orthopedist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "11:00-12:00",
+                "13:00-14:00",
+                "14:00-15:00"
+            ],
+            "email": "dr.davis@example.com",
+            "id": 9,
+            "name": "Dr. Olivia Davis",
+            "phone": "555-909-0101",
+            "specialty": "Pediatrician"
+        },
+        {
+            "availableTimes": [
+                "10:00-11:00",
+                "11:00-12:00",
+                "14:00-15:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.miller@example.com",
+            "id": 10,
+            "name": "Dr. Henry Miller",
+            "phone": "555-010-1111",
+            "specialty": "Dermatologist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "12:00-13:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.moore@example.com",
+            "id": 11,
+            "name": "Dr. Ella Moore",
+            "phone": "555-111-2222",
+            "specialty": "Cardiologist"
+        },
+        {
+            "availableTimes": [
+                "10:00-11:00",
+                "11:00-12:00",
+                "13:00-14:00",
+                "14:00-15:00"
+            ],
+            "email": "dr.martin@example.com",
+            "id": 12,
+            "name": "Dr. Leo Martin",
+            "phone": "555-222-3333",
+            "specialty": "Neurologist"
+        },
+        {
+            "availableTimes": [
+                "13:00-14:00",
+                "14:00-15:00",
+                "15:00-16:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.jackson@example.com",
+            "id": 13,
+            "name": "Dr. Ivy Jackson",
+            "phone": "555-333-4444",
+            "specialty": "Orthopedist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "14:00-15:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.thomas@example.com",
+            "id": 14,
+            "name": "Dr. Owen Thomas",
+            "phone": "555-444-5555",
+            "specialty": "Pediatrician"
+        },
+        {
+            "availableTimes": [
+                "10:00-11:00",
+                "11:00-12:00",
+                "13:00-14:00",
+                "14:00-15:00"
+            ],
+            "email": "dr.hall@example.com",
+            "id": 15,
+            "name": "Dr. Ava Hall",
+            "phone": "555-555-6666",
+            "specialty": "Dermatologist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "11:00-12:00",
+                "14:00-15:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.green@example.com",
+            "id": 16,
+            "name": "Dr. Mia Green",
+            "phone": "555-666-7777",
+            "specialty": "Cardiologist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "11:00-12:00",
+                "12:00-13:00"
+            ],
+            "email": "dr.baker@example.com",
+            "id": 17,
+            "name": "Dr. Jack Baker",
+            "phone": "555-777-8888",
+            "specialty": "Neurologist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "11:00-12:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.walker@example.com",
+            "id": 18,
+            "name": "Dr. Nora Walker",
+            "phone": "555-888-9999",
+            "specialty": "Orthopedist"
+        },
+        {
+            "availableTimes": [
+                "13:00-14:00",
+                "14:00-15:00",
+                "15:00-16:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.young@example.com",
+            "id": 19,
+            "name": "Dr. Liam Young",
+            "phone": "555-999-0000",
+            "specialty": "Pediatrician"
+        },
+        {
+            "availableTimes": [
+                "10:00-11:00",
+                "13:00-14:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.king@example.com",
+            "id": 20,
+            "name": "Dr. Zoe King",
+            "phone": "555-000-1111",
+            "specialty": "Dermatologist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.scott@example.com",
+            "id": 21,
+            "name": "Dr. Lily Scott",
+            "phone": "555-111-2223",
+            "specialty": "Cardiologist"
+        },
+        {
+            "availableTimes": [
+                "10:00-11:00",
+                "11:00-12:00",
+                "14:00-15:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.evans@example.com",
+            "id": 22,
+            "name": "Dr. Lucas Evans",
+            "phone": "555-222-3334",
+            "specialty": "Neurologist"
+        },
+        {
+            "availableTimes": [
+                "11:00-12:00",
+                "13:00-14:00",
+                "15:00-16:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.turner@example.com",
+            "id": 23,
+            "name": "Dr. Grace Turner",
+            "phone": "555-333-4445",
+            "specialty": "Orthopedist"
+        },
+        {
+            "availableTimes": [
+                "12:00-13:00",
+                "13:00-14:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.hill@example.com",
+            "id": 24,
+            "name": "Dr. Ethan Hill",
+            "phone": "555-444-5556",
+            "specialty": "Pediatrician"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.ward@example.com",
+            "id": 25,
+            "name": "Dr. Ruby Ward",
+            "phone": "555-555-6667",
+            "specialty": "Dermatologist"
+        },
+        {
+            "availableTimes": [
+                "tue-pm",
+                "wed-am"
+            ],
+            "email": "newtestdoctor@example.com",
+            "id": 27,
+            "name": "New Test Doctor",
+            "phone": "1234567891",
+            "specialty": "Dentist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "15:00-16:00",
+                "16:00-17:00",
+                "18:00-19:00",
+                "19:00-20:00"
+            ],
+            "email": "House@example.com",
+            "id": 28,
+            "name": "Doctor House",
+            "phone": "1234567891",
+            "specialty": "Diagnosist"
+        }
+    ]
+}
+
+All appointments by William Harris:
+{
+    "appointments": [
+        {
+            "appointmentDate": "2025-05-10",
+            "appointmentTime": "2025-05-10T10:00:00",
+            "appointmentTimeOnly": "10:00:00",
+            "doctorId": 1,
+            "doctorName": "Dr. Emily Adams",
+            "doctorSpeciality": "Cardiologist",
+            "endTime": "2025-05-10T11:00:00",
+            "id": 10,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 0
+        },
+        {
+            "appointmentDate": "2025-05-10",
+            "appointmentTime": "2025-05-10T14:00:00",
+            "appointmentTimeOnly": "14:00:00",
+            "doctorId": 11,
+            "doctorName": "Dr. Ella Moore",
+            "doctorSpeciality": "Cardiologist",
+            "endTime": "2025-05-10T15:00:00",
+            "id": 35,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 0
+        },
+        {
+            "appointmentDate": "2025-04-09",
+            "appointmentTime": "2025-04-09T10:00:00",
+            "appointmentTimeOnly": "10:00:00",
+            "doctorId": 9,
+            "doctorName": "Dr. Olivia Davis",
+            "doctorSpeciality": "Pediatrician",
+            "endTime": "2025-04-09T11:00:00",
+            "id": 59,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 1
+        },
+        {
+            "appointmentDate": "2025-04-05",
+            "appointmentTime": "2025-04-05T11:00:00",
+            "appointmentTimeOnly": "11:00:00",
+            "doctorId": 2,
+            "doctorName": "Dr. Mark Johnson",
+            "doctorSpeciality": "Neurologist",
+            "endTime": "2025-04-05T12:00:00",
+            "id": 93,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 1
+        },
+        {
+            "appointmentDate": "2025-04-12",
+            "appointmentTime": "2025-04-12T09:00:00",
+            "appointmentTimeOnly": "09:00:00",
+            "doctorId": 3,
+            "doctorName": "Dr. Sarah Lee",
+            "doctorSpeciality": "Orthopedist",
+            "endTime": "2025-04-12T10:00:00",
+            "id": 123,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 1
+        },
+        {
+            "appointmentDate": "2026-04-29",
+            "appointmentTime": "2026-04-29T11:00:00",
+            "appointmentTimeOnly": "11:00:00",
+            "doctorId": 1,
+            "doctorName": "Dr. Emily Adams",
+            "doctorSpeciality": "Cardiologist",
+            "endTime": "2026-04-29T12:00:00",
+            "id": 131,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 0
+        },
+        {
+            "appointmentDate": "2026-04-30",
+            "appointmentTime": "2026-04-30T14:00:00",
+            "appointmentTimeOnly": "14:00:00",
+            "doctorId": 5,
+            "doctorName": "Dr. Alice Brown",
+            "doctorSpeciality": "Dermatologist",
+            "endTime": "2026-04-30T15:00:00",
+            "id": 132,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 0
+        },
+        {
+            "appointmentDate": "2026-05-01",
+            "appointmentTime": "2026-05-01T14:00:00",
+            "appointmentTimeOnly": "14:00:00",
+            "doctorId": 2,
+            "doctorName": "Dr. Mark Johnson",
+            "doctorSpeciality": "Neurologist",
+            "endTime": "2026-05-01T15:00:00",
+            "id": 133,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 0
+        },
+        {
+            "appointmentDate": "2026-04-23",
+            "appointmentTime": "2026-04-23T16:00:00",
+            "appointmentTimeOnly": "16:00:00",
+            "doctorId": 3,
+            "doctorName": "Dr. Sarah Lee",
+            "doctorSpeciality": "Orthopedist",
+            "endTime": "2026-04-23T17:00:00",
+            "id": 134,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 2
+        },
+        {
+            "appointmentDate": "2026-04-28",
+            "appointmentTime": "2026-04-28T16:00:00",
+            "appointmentTimeOnly": "16:00:00",
+            "doctorId": 3,
+            "doctorName": "Dr. Sarah Lee",
+            "doctorSpeciality": "Orthopedist",
+            "endTime": "2026-04-28T17:00:00",
+            "id": 135,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 1
+        },
+        {
+            "appointmentDate": "2026-04-15",
+            "appointmentTime": "2026-04-15T14:00:00",
+            "appointmentTimeOnly": "14:00:00",
+            "doctorId": 1,
+            "doctorName": "Dr. Emily Adams",
+            "doctorSpeciality": "Cardiologist",
+            "endTime": "2026-04-15T15:00:00",
+            "id": 136,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 0
+        },
+        {
+            "appointmentDate": "2026-04-15",
+            "appointmentTime": "2026-04-15T14:00:00",
+            "appointmentTimeOnly": "14:00:00",
+            "doctorId": 3,
+            "doctorName": "Dr. Sarah Lee",
+            "doctorSpeciality": "Orthopedist",
+            "endTime": "2026-04-15T15:00:00",
+            "id": 137,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 2
+        },
+        {
+            "appointmentDate": "2026-04-16",
+            "appointmentTime": "2026-04-16T16:00:00",
+            "appointmentTimeOnly": "16:00:00",
+            "doctorId": 3,
+            "doctorName": "Dr. Sarah Lee",
+            "doctorSpeciality": "Orthopedist",
+            "endTime": "2026-04-16T17:00:00",
+            "id": 138,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 1
+        },
+        {
+            "appointmentDate": "2026-04-29",
+            "appointmentTime": "2026-04-29T10:00:00",
+            "appointmentTimeOnly": "10:00:00",
+            "doctorId": 1,
+            "doctorName": "Dr. Emily Adams",
+            "doctorSpeciality": "Cardiologist",
+            "endTime": "2026-04-29T11:00:00",
+            "id": 139,
+            "patientAddress": "111 Chestnut Pl, Midvale",
+            "patientEmail": "william.h@example.com",
+            "patientId": 10,
+            "patientName": "William Harris",
+            "patientPhone": "888-000-0000",
+            "status": 1
+        }
+    ]
+}
+
+
+Doctors with filter Dermatologist and Time 10:00 - 11:00
+{
+    "doctors": [
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.brown@example.com",
+            "id": 5,
+            "name": "Dr. Alice Brown",
+            "phone": "555-505-6060",
+            "specialty": "Dermatologist"
+        },
+        {
+            "availableTimes": [
+                "10:00-11:00",
+                "11:00-12:00",
+                "14:00-15:00",
+                "16:00-17:00"
+            ],
+            "email": "dr.miller@example.com",
+            "id": 10,
+            "name": "Dr. Henry Miller",
+            "phone": "555-010-1111",
+            "specialty": "Dermatologist"
+        },
+        {
+            "availableTimes": [
+                "10:00-11:00",
+                "11:00-12:00",
+                "13:00-14:00",
+                "14:00-15:00"
+            ],
+            "email": "dr.hall@example.com",
+            "id": 15,
+            "name": "Dr. Ava Hall",
+            "phone": "555-555-6666",
+            "specialty": "Dermatologist"
+        },
+        {
+            "availableTimes": [
+                "10:00-11:00",
+                "13:00-14:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.king@example.com",
+            "id": 20,
+            "name": "Dr. Zoe King",
+            "phone": "555-000-1111",
+            "specialty": "Dermatologist"
+        },
+        {
+            "availableTimes": [
+                "09:00-10:00",
+                "10:00-11:00",
+                "14:00-15:00",
+                "15:00-16:00"
+            ],
+            "email": "dr.ward@example.com",
+            "id": 25,
+            "name": "Dr. Ruby Ward",
+            "phone": "555-555-6667",
+            "specialty": "Dermatologist"
+        }
+    ]
+}
