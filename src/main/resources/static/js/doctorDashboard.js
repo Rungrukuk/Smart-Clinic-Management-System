@@ -1,72 +1,44 @@
-import { getAllAppointments } from './services/appointmentRecordService.js';
-import { createPatientRow }   from './components/patientRows.js';
+import { createPatientRecordRow }                  from './components/patientRecordRow.js';
+import { getPatientRecords, filterPatientRecords } from './services/patientRecordServices.js';
 
-const token = localStorage.getItem('token');
-const tableBody = document.getElementById('patientTableBody');
+const token     = localStorage.getItem('token');
+const tableBody = document.getElementById('patientRecordTableBody');
 
-let selectedDate = new Date().toISOString().split('T')[0];
-let patientName  = null;
-
-document.addEventListener('DOMContentLoaded', () => {
-  const datePicker = document.getElementById('datePicker');
-  if (datePicker) datePicker.value = selectedDate;
-
-  const searchBar = document.getElementById('searchBar');
-  if (searchBar) {
-    searchBar.addEventListener('input', (e) => {
-      patientName = e.target.value.trim() || null;
-      loadAppointments();
-    });
-  }
-
-  const todayBtn = document.getElementById('todayBtn');
-  if (todayBtn) {
-    todayBtn.addEventListener('click', () => {
-      selectedDate = new Date().toISOString().split('T')[0];
-      if (datePicker) datePicker.value = selectedDate;
-      loadAppointments();
-    });
-  }
-
-  if (datePicker) {
-    datePicker.addEventListener('change', (e) => {
-      selectedDate = e.target.value;
-      loadAppointments();
-    });
-  }
-
-  loadAppointments();
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadPatientRecords();
+  setupFilters();
 });
 
-async function loadAppointments() {
+async function loadPatientRecords() {
+  renderRows(await getPatientRecords(token));
+}
+
+function setupFilters() {
+  document.getElementById('searchBar')
+    .addEventListener('input', filterOnChange);
+  document.getElementById('filterStatus')
+    .addEventListener('change', filterOnChange);
+  document.getElementById('filterDate')
+    .addEventListener('change', filterOnChange);
+}
+
+async function filterOnChange() {
+  const name   = document.getElementById('searchBar').value    || 'null';
+  const status = document.getElementById('filterStatus').value || 'null';
+  const date   = document.getElementById('filterDate').value   || 'null';
+  renderRows(await filterPatientRecords(status, name, date, token));
+}
+
+function renderRows(records) {
   tableBody.innerHTML = '';
 
-  try {
-    const appointments = await getAllAppointments(selectedDate, patientName, token);
-
-    if (!appointments || appointments.length === 0) {
-      tableBody.innerHTML = `
-        <tr>
-          <td colspan="5" class="noPatientRecord">
-            No appointments found for this date.
-          </td>
-        </tr>`;
-      return;
-    }
-
-    appointments.forEach(appointment => {
-      const patient = appointment.patient || appointment;
-      const row = createPatientRow(patient, appointment);
-      tableBody.appendChild(row);
-    });
-
-  } catch (error) {
-    console.error('Error loading appointments:', error);
+  if (!records?.length) {
     tableBody.innerHTML = `
       <tr>
-        <td colspan="5" class="noPatientRecord">
-          Failed to load appointments. Please try again.
-        </td>
+        <td colspan="8" class="noPatientRecord">No patient records found.</td>
       </tr>`;
+    return;
   }
+
+  records.forEach(record => tableBody.appendChild(createPatientRecordRow(record)));
 }

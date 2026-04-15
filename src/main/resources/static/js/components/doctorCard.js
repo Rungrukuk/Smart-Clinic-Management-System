@@ -1,11 +1,6 @@
-import { getPatientData } from '../services/patientServices.js';
-
-export function createDoctorCard(doctor) {
-
+export function createDoctorCard(doctor, { role, onBook } = {}) {
   const card = document.createElement('div');
   card.classList.add('doctor-card');
-
-  const role = localStorage.getItem('userRole');
 
   const infoDiv = document.createElement('div');
   infoDiv.classList.add('doctor-info');
@@ -15,20 +10,18 @@ export function createDoctorCard(doctor) {
 
   const specialization = document.createElement('p');
   specialization.classList.add('specialty-badge');
-  specialization.textContent = doctor.specialty || '';
+  specialization.textContent = doctor.specialty || '—';
 
   const availability = document.createElement('p');
   availability.classList.add('doctor-availability');
-  const times = doctor.availableTimes || [];
-  availability.textContent = Array.isArray(times) ? times.join(', ') : times;
+  availability.textContent = (doctor.availableTimes || []).join(', ');
 
-  infoDiv.appendChild(name);
-  infoDiv.appendChild(specialization);
+  infoDiv.append(name, specialization);
 
-  if (role !== 'patient') {
+  if (role !== 'patient' && role !== 'loggedPatient') {
     const email = document.createElement('p');
     email.classList.add('doctor-email');
-    email.textContent = doctor.email;
+    email.textContent = doctor.email || '—';
     infoDiv.appendChild(email);
   }
 
@@ -37,37 +30,21 @@ export function createDoctorCard(doctor) {
   const actionsDiv = document.createElement('div');
   actionsDiv.classList.add('card-actions');
 
-  if (role === 'patient') {
-    const bookNow = document.createElement('button');
-    bookNow.textContent = 'Book Now';
-    bookNow.classList.add('button');
-    bookNow.addEventListener('click', () => {
-      if (typeof window.openModal === 'function') {
-        window.openModal('patientLogin');
-      }
-    });
-    actionsDiv.appendChild(bookNow);
+  const bookBtn = document.createElement('button');
+  bookBtn.textContent = 'Book Appointment';
+  bookBtn.classList.add('button');
 
-  } else if (role === 'loggedPatient') {
-    const bookNow = document.createElement('button');
-    bookNow.textContent = 'Book Now';
-    bookNow.classList.add('button');
-    bookNow.addEventListener('click', async () => {
-      const token = localStorage.getItem('token');
-      try {
-        const patientData = await getPatientData(token);
-        if (typeof window.showBookingOverlay === 'function') {
-          window.showBookingOverlay(null, doctor, patientData);
-        }
-      } catch (error) {
-        showToast('Could not load your details. Please try again.', 'error');
-      }
-    });
-    actionsDiv.appendChild(bookNow);
+  bookBtn.addEventListener('click', () => {
+    if (typeof onBook === 'function') {
+      onBook(doctor);
+    }
+  });
+
+  if (role === 'patient' || role === 'loggedPatient') {
+    actionsDiv.appendChild(bookBtn);
   }
 
-  card.appendChild(infoDiv);
-  card.appendChild(actionsDiv);
+  card.append(infoDiv, actionsDiv);
 
   return card;
 }

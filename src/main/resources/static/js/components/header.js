@@ -1,88 +1,88 @@
-function renderHeader() {
+async function renderHeader() {
+  const path  = window.location.pathname;
+  const token = localStorage.getItem('token');
 
-  if (window.location.pathname === "/" ||
-      window.location.pathname.endsWith("index.html")) {
-    localStorage.removeItem("userRole");
-    localStorage.removeItem("token");
+  if (path === '/' || path.endsWith('index.html')) {
+    localStorage.removeItem('token');
   }
 
-  const role  = localStorage.getItem("userRole");
-  const token = localStorage.getItem("token");
-
-  if ((role === "loggedPatient" || role === "admin" || role === "doctor") && !token) {
-    localStorage.removeItem("userRole");
-    alert("Session expired or invalid login. Please log in again.");
-    window.location.href = "/";
-    return;
-  }
-
-  const headerDiv = document.getElementById("header");
+  const headerDiv = document.getElementById('header');
   if (!headerDiv) return;
 
-  let headerContent = `
-    <div class="header">
-      <div class="logo">Smart<span>Clinic</span></div>
-      <nav>`;
+  let role = null;
+  let name = null
 
-  if (role === "admin") {
-    headerContent += `
-        <a href="#" onclick="logout()">Logout</a>`;
+  if (token) {
+    try {
+      const res = await fetch(`http://localhost:8080/api/auth/me`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
 
-  } else if (role === "doctor") {
-    headerContent += `
-        <a href="/">Home</a>
-        <a href="#" onclick="logout()">Logout</a>`;
-
-  } else if (role === "patient") {
-    headerContent += `
-        <button id="patientLogin" class="button">Login</button>
-        <button id="patientSignup" class="adminBtn">Sign Up</button>`;
-
-  } else if (role === "loggedPatient") {
-    headerContent += `
-        <a href="/">Home</a>
-        <a href="../pages/patientAppointments.html">Appointments</a>
-        <a href="#" onclick="logoutPatient()">Logout</a>`;
+      if (res.ok) {
+        const user = await res.json();
+        role = user.role;
+        name = user.name;
+        window.__currentUser = user; 
+      } else {
+        localStorage.removeItem('token');
+        if (path !== '/' && !path.endsWith('index.html')) {
+          alert('Session expired. Please log in again.');
+          window.location.href = '/';
+          return;
+        }
+      }
+    } catch (e) {
+      console.error('Session check failed:', e);
+    }
   }
 
-  headerContent += `
-      </nav>
+  let nav = '';
+
+  if (role === 'ADMIN') {
+    nav = `<a href="#" onclick="logout()">Logout</a>`;
+  } else if (role === 'DOCTOR') {
+    nav = `<a href="#" onclick="logout()">Logout</a>`;
+  } else if (role === 'PATIENT') {
+    nav = `<span style="margin: 10px">${name}</span>
+    <a href="#" style="margin: 10px" onclick="logout()">Logout</a>`;
+  } else {
+    const isPatientDashboard = path.endsWith('patientDashboard.html');
+
+    if (isPatientDashboard) {
+      nav = `
+        <button id="patientLogin" class="button">Login</button>
+        <button id="patientSignup" class="adminBtn">Sign Up</button>`;
+    } else {
+      nav = '';
+    }
+  }
+
+
+  headerDiv.innerHTML = `
+    <div class="header">
+      <div class="logo">Smart<span>Clinic</span></div>
+      <nav>${nav}</nav>
     </div>`;
 
-  headerDiv.innerHTML = headerContent;
   attachHeaderButtonListeners();
 }
 
 function attachHeaderButtonListeners() {
-  const loginBtn = document.getElementById("patientLogin");
-  if (loginBtn) {
-    loginBtn.addEventListener("click", () => {
-      if (typeof window.openModal === "function") {
-        window.openModal("patientLogin");
-      }
-    });
-  }
-
-  const signupBtn = document.getElementById("patientSignup");
-  if (signupBtn) {
-    signupBtn.addEventListener("click", () => {
-      if (typeof window.openModal === "function") {
-        window.openModal("patientSignup");
-      }
-    });
-  }
+  document.getElementById('patientLogin')?.addEventListener('click', () => {
+    window.openModal?.('patientLogin');
+  });
+  document.getElementById('patientSignup')?.addEventListener('click', () => {
+    window.openModal?.('patientSignup');
+  });
 }
 
 function logout() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("userRole");
-  window.location.href = "/";
+  localStorage.removeItem('token');
+  window.location.href = '/';
 }
 
-function logoutPatient() {
-  localStorage.removeItem("token");
-  localStorage.setItem("userRole", "patient");
-  window.location.href = "/pages/patientDashboard.html";
-}
-
+window.logout = logout;
 renderHeader();

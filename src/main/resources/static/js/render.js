@@ -1,30 +1,23 @@
 function selectRole(role) {
-  localStorage.setItem('userRole', role);
-
   switch (role) {
-    case 'admin':
+    case 'ADMIN':
       window.location.href = '/admin/adminDashboard';
       break;
-    case 'doctor':
+    case 'DOCTOR':
       window.location.href = '/doctor/doctorDashboard';
+      break;
+    case 'PATIENT':
+      window.location.href = '/pages/patientDashboard.html';
       break;
     case 'patient':
       window.location.href = '/pages/patientDashboard.html';
-      break;
-    case 'loggedPatient':
-      window.location.href = '/pages/loggedPatientDashboard.html';
       break;
     default:
       window.location.href = '/';
   }
 }
 
-function renderContent() {
-  const role = localStorage.getItem('userRole');
-  if (!role) {
-    window.location.href = '/';
-  }
-}
+function renderContent() {}
 
 window.selectRole    = selectRole;
 window.renderContent = renderContent;

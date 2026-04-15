@@ -1,20 +1,24 @@
-import { API_BASE_URL } from "../config/config.js";
+import { API_BASE_URL, authHeaders } from '../config/config.js';
 
-const APPOINTMENT_API = API_BASE_URL + '/appointments';
+const APPOINTMENT_API = `${API_BASE_URL}/appointment`;
 
 export async function getAllAppointments(date, patientName, token) {
   try {
-    const name = patientName || 'null';
-    const response = await fetch(
-      `${APPOINTMENT_API}/${date}/${name}/${token}`,
-      {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
+    let url;
+    if (date && patientName) {
+      url = `${APPOINTMENT_API}/${date}/${patientName}`;
+    } else if (date) {
+      url = `${APPOINTMENT_API}/date/${date}`;
+    } else if (patientName) {
+      url = `${APPOINTMENT_API}/patient/${patientName}`;
+    } else {
+      url = `${APPOINTMENT_API}/doctor`;
+    }
 
+    const response = await fetch(url, { headers: authHeaders(token) });
     if (!response.ok) return [];
-    return await response.json();
+    const data = await response.json();
+    return data.appointments || [];
   } catch (error) {
     console.error('Error fetching appointments:', error);
     return [];
@@ -23,12 +27,11 @@ export async function getAllAppointments(date, patientName, token) {
 
 export async function bookAppointment(appointmentData, token) {
   try {
-    const response = await fetch(`${APPOINTMENT_API}/${token}`, {
+    const response = await fetch(APPOINTMENT_API, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(token),
       body: JSON.stringify(appointmentData)
     });
-
     const data = await response.json();
     return { success: response.ok, message: data.message };
   } catch (error) {
@@ -39,12 +42,11 @@ export async function bookAppointment(appointmentData, token) {
 
 export async function updateAppointment(appointmentData, token) {
   try {
-    const response = await fetch(`${APPOINTMENT_API}/${token}`, {
+    const response = await fetch(APPOINTMENT_API, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(token),
       body: JSON.stringify(appointmentData)
     });
-
     const data = await response.json();
     return { success: response.ok, message: data.message };
   } catch (error) {
@@ -55,15 +57,32 @@ export async function updateAppointment(appointmentData, token) {
 
 export async function cancelAppointment(id, token) {
   try {
-    const response = await fetch(`${APPOINTMENT_API}/${id}/${token}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+    const response = await fetch(`${APPOINTMENT_API}/${id}/cancel`, {
+      method: 'POST',
+      headers: authHeaders(token)
     });
-
     const data = await response.json();
     return { success: response.ok, message: data.message };
   } catch (error) {
     console.error('Error cancelling appointment:', error);
     return { success: false, message: 'An unexpected error occurred.' };
+  }
+}
+
+export async function getAppointmentById(id, token) {
+  try {
+    const response = await fetch(`${APPOINTMENT_API}/${id}`, {
+      headers: authHeaders(token)
+    });
+
+    const data = await response.json();
+
+    return {
+      success: response.ok,
+      appointment: data.appointment
+    };
+  } catch (e) {
+    console.error('Error fetching appointment:', e);
+    return { success: false };
   }
 }

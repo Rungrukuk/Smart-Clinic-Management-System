@@ -29,20 +29,24 @@
                 </div>
 
                 <div class="filter-section">
-                    <button id="todayBtn" class="button">Today's Appointments</button>
                     <input type="date" id="datePicker" class="input-field" />
+                    <button id="todayBtn" class="button">Today's Appointments</button>
+                    <button id="searchBtn" class="button">Search</button>
                 </div>
 
                 <div id="content">
-                    <table id="patientTable">
+                    <table class="data-table" id="patientTable">
                         <thead>
-                            <tr>
-                                <th>Patient ID</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Prescription</th>
-                            </tr>
+                                <tr>
+                                    <th>Appointment ID</th>
+                                    <th>Patient Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
                         </thead>
                         <tbody id="patientTableBody">
                         </tbody>
@@ -61,5 +65,6 @@
     <script th:src="@{/js/components/header.js}" defer></script>
     <script th:src="@{/js/components/footer.js}" defer></script>
     <script type="module" th:src="@{/js/doctorDashboard.js}" defer></script>
+    <script type="module" th:src="@{/js/doctorAppointments.js}" defer></script>
 </body>
 </html>

@@ -1,80 +1,148 @@
-export function createAppointmentRow(appointment) {
-  const row = document.createElement('tr');
+function createCell(text = '—') {
+  const td = document.createElement('td');
+  td.textContent = text;
+  return td;
+}
 
-  const idCell = document.createElement('td');
-  idCell.textContent = appointment.id || '—';
+function formatDateTime(dateTime) {
+  if (!dateTime) return { date: '—', time: '—' };
 
-  const doctorCell = document.createElement('td');
-  doctorCell.textContent = appointment.doctorName || appointment.doctor?.name || '—';
+  const str = dateTime.toString();
 
-  const specialtyCell = document.createElement('td');
-  specialtyCell.textContent =
-    appointment.specialization || appointment.doctor?.specialization || '—';
+  return {
+    date: str.substring(0, 10),
+    time: str.substring(11, 16)
+  };
+}
 
-  const dateCell = document.createElement('td');
-  dateCell.textContent = appointment.date || '—';
+function getStatusText(status) {
+  const statusMap = {
+    0: 'scheduled',
+    1: 'completed',
+    2: 'cancelled'
+  };
 
-  const timeCell = document.createElement('td');
-  timeCell.textContent = appointment.time
-    ? appointment.time.toString().toUpperCase()
-    : '—';
+  return statusMap[status] || 'pending';
+}
 
-  const statusCell  = document.createElement('td');
-  const statusBadge = document.createElement('span');
-  statusBadge.textContent = appointment.status || '—';
-  statusBadge.classList.add(
-    'status-badge',
-    `status-${(appointment.status || 'pending').toLowerCase()}`
-  );
-  statusCell.appendChild(statusBadge);
+function createStatusCell(status) {
+  const statusText = getStatusText(status);
 
-  const actionsCell = document.createElement('td');
-  const isPending   = !appointment.status ||
-                      appointment.status.toLowerCase() === 'pending';
+  const td = document.createElement('td');
+  const badge = document.createElement('span');
 
-  if (isPending) {
-    const editBtn = document.createElement('button');
-    editBtn.classList.add('adminBtn');
-    editBtn.innerHTML = `
-      <img src="../assets/images/edit/edit.png"
-           alt="Edit" style="width:14px; height:14px;" />
-      Update`;
+  badge.textContent = statusText;
+  badge.classList.add('status-badge', `status-${statusText}`);
 
-    editBtn.addEventListener('click', () => {
+  td.appendChild(badge);
+
+  return { td, statusText };
+}
+
+function createActionsCell(appointment, role) {
+  const td = document.createElement('td');
+
+  const statusText = getStatusText(appointment.status);
+
+  if (statusText === 'completed') {
+    const btn = document.createElement('button');
+    btn.textContent = role === 'doctor' ? 'Edit Prescription' : 'View Prescription';
+    btn.classList.add('button');
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+
       const params = new URLSearchParams({
-        appointmentId: appointment.id                                    || '',
-        doctorName:    appointment.doctorName || appointment.doctor?.name || '',
-        date:          appointment.date                                  || '',
-        time:          appointment.time                                  || '',
-        status:        appointment.status                                || 'pending',
-        notes:         appointment.notes                                 || ''
+        appointmentId: appointment.id,
+        patientName: appointment.patient?.name || appointment.patientName
       });
+
+      window.location.href = `../pages/prescription.html?${params.toString()}`;
+    });
+
+    td.appendChild(btn);
+    return td;
+  }
+
+  if (statusText === 'scheduled') {
+    const btn = document.createElement('button');
+    btn.textContent = 'Edit';
+    btn.classList.add('button');
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      const params = new URLSearchParams({
+        appointmentId: appointment.id
+      });
+
       window.location.href =
         `../pages/updateAppointment.html?${params.toString()}`;
     });
 
-    actionsCell.appendChild(editBtn);
-
-    const cancelBtn = document.createElement('button');
-    cancelBtn.classList.add('danger-btn');
-    cancelBtn.textContent = 'Cancel';
-
-    cancelBtn.addEventListener('click', () => {
-      if (confirm('Are you sure you want to cancel this appointment?')) {
-        window.cancelAppointment(appointment.id);
-      }
-    });
-
-    actionsCell.appendChild(cancelBtn);
+    td.appendChild(btn);
+    return td;
   }
 
-  row.appendChild(idCell);
-  row.appendChild(doctorCell);
-  row.appendChild(specialtyCell);
-  row.appendChild(dateCell);
-  row.appendChild(timeCell);
+  const label = document.createElement('span');
+  label.textContent = '—';
+  label.classList.add('status-label');
+
+  td.appendChild(label);
+  return td;
+}
+
+
+
+
+export function createPatientAppointmentRow(appointment) {
+  const row = document.createElement('tr');
+  
+  const { date, time } = formatDateTime(appointment.appointmentTime);
+  const { td: statusCell } = createStatusCell(appointment.status);
+
+  const doctorName =
+    appointment.doctorName ||
+    appointment.doctor?.name ||
+    `Doctor #${appointment.doctorId}`;
+
+  const specialty =
+    appointment.doctorSpeciality ||
+    appointment.doctor?.specialty ||
+    '—';
+
+  row.appendChild(createCell(appointment.id));
+  row.appendChild(createCell(doctorName));
+  row.appendChild(createCell(specialty));
+  row.appendChild(createCell(date));
+  row.appendChild(createCell(time));
   row.appendChild(statusCell);
-  row.appendChild(actionsCell);
+
+  const role = 'patient';
+  row.appendChild(createActionsCell(appointment, role));
+
+  return row;
+}
+
+
+
+export function createDoctorAppointmentRow(appointment) {
+  const row = document.createElement('tr');
+
+  const patient = appointment.patient || {};
+  const { date, time } = formatDateTime(appointment.appointmentTime);
+  const { td: statusCell } = createStatusCell(appointment.status);
+
+  row.appendChild(createCell(appointment.id));
+  row.appendChild(createCell(patient.name));
+  row.appendChild(createCell(patient.phone));
+  row.appendChild(createCell(patient.email));
+  row.appendChild(createCell(date));
+  row.appendChild(createCell(time));
+  row.appendChild(statusCell);
+
+  const role = 'doctor';
+  row.appendChild(createActionsCell(appointment, role));
 
   return row;
 }

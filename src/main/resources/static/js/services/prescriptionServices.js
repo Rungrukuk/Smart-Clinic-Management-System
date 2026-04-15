@@ -1,15 +1,14 @@
-import { API_BASE_URL } from "../config/config.js";
+import { API_BASE_URL, authHeaders } from '../config/config.js';
 
-const PRESCRIPTION_API = API_BASE_URL + '/prescription';
+const PRESCRIPTION_API = `${API_BASE_URL}/prescription`;
 
 export async function savePrescription(prescriptionData, token) {
   try {
-    const response = await fetch(`${PRESCRIPTION_API}/${token}`, {
+    const response = await fetch(PRESCRIPTION_API, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(token),
       body: JSON.stringify(prescriptionData)
     });
-
     const data = await response.json();
     return { success: response.ok, message: data.message };
   } catch (error) {
@@ -20,16 +19,12 @@ export async function savePrescription(prescriptionData, token) {
 
 export async function getPrescriptionByAppointment(appointmentId, token) {
   try {
-    const response = await fetch(
-      `${PRESCRIPTION_API}/${appointmentId}/${token}`,
-      {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
-
+    const response = await fetch(`${PRESCRIPTION_API}/${appointmentId}`, {
+      headers: authHeaders(token)
+    });
     if (!response.ok) return null;
-    return await response.json();
+    const data = await response.json();
+    return data.prescription || null;
   } catch (error) {
     console.error('Error fetching prescription:', error);
     return null;

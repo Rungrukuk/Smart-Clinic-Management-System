@@ -4,69 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Dashboard</title>
+
     <link rel="icon" href="../assets/images/logo/logo.png" />
 
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/adminDashboard.css" />
     <link rel="stylesheet" href="../assets/css/patientDashboard.css" />
+
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <div class="container" id="container">
-        <div class="wrapper" id="wrapper">
+<div class="container" id="container">
+    <div class="wrapper" id="wrapper">
 
-            <div id="header"></div>
+        <div id="header"></div>
 
-            <main class="main-content" id="mainContent">
+        <main class="main-content" id="mainContent">
+
+            <nav class="tab-nav" id="patientTopbar">
+                <button class="tab-btn" data-tab="doctors" onclick="switchPatientTab(event, 'doctors')">
+                Doctors
+                </button>
+
+                <button class="tab-btn" data-tab="appointments" onclick="switchPatientTab(event, 'appointments')">
+                Appointments
+                </button>
+            </nav>
+
+            <div id="tab-doctors" class="tab-panel active">
+
+                <div class="patient-topbar">
+                    <p class="patient-welcome">
+                        Filters
+                    </p>
+                </div>
 
                 <div class="search-section">
-                    <input
-                        type="text"
-                        id="searchBar"
-                        placeholder="Search by doctor name"
-                    />
+                    <input type="text" id="searchBar" placeholder="Search by doctor name"/>
                 </div>
 
                 <div class="filter-section">
-                    <div class="filter-wrapper">
-                        <select class="filter-select" id="filterTime">
-                            <option value="">Filter by Time</option>
-                            <option value="am">AM</option>
-                            <option value="pm">PM</option>
-                        </select>
-
-                        <select class="filter-select" id="filterSpecialty">
-                            <option value="">Filter by Specialty</option>
-                            <option value="cardiology">Cardiology</option>
-                            <option value="dermatology">Dermatology</option>
-                            <option value="neurology">Neurology</option>
-                            <option value="pediatrics">Pediatrics</option>
-                        </select>
-                    </div>
+                        <button id="doctorSearchBtn" class="button">
+                            Search
+                        </button>
                 </div>
 
                 <div id="content"></div>
+            </div>
 
-            </main>
+            <div id="tab-appointments" class="tab-panel">
 
-            <div id="footer"></div>
+                <div class="filter-section">
+                    <select class="filter-select" id="filterCondition">
+                        <option value="">Filter by Status</option>
+                        <option value="0">Scheduled</option>
+                        <option value="1">Completed</option>
+                        <option value="2">Cancelled</option>
+                    </select>
+                </div>
 
-        </div>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Doctor</th>
+                            <th>Specialty</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="appointmentTableBody"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </main>
+
+        <div id="footer"></div>
+
     </div>
+</div>
 
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <div id="modal-body"></div>
-        </div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <div id="modal-body"></div>
     </div>
+</div>
 
-    <script src="../js/util.js" defer></script>
-    <script src="../js/render.js" defer></script>
-    <script src="../js/components/header.js" defer></script>
-    <script src="../js/components/footer.js" defer></script>
-    <script type="module" src="../js/components/modals.js"></script>
-    <script type="module" src="../js/patientDashboard.js" defer></script>
+<div class="modalApp-backdrop" id="modalAppBackdrop"></div>
+<div class="modalApp" id="modalApp">
+    <div id="modalApp-body"></div>
+</div>
+
+<div class="ripple-overlay" id="rippleOverlay"></div>
+
+<script src="../js/util.js" defer></script>
+<script src="../js/render.js" defer></script>
+<script src="../js/components/header.js" defer></script>
+<script src="../js/components/footer.js" defer></script>
+
+<script type="module" src="../js/components/modals.js"></script>
+<script type="module" src="../js/patientDashboard.js" defer></script>
+
 </body>
 </html>

@@ -5,6 +5,21 @@ spring:
   application:
     name: smart-clinic-management-system
 
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    cache: false
+    encoding: UTF-8
+
+  devtools:
+    restart:
+      enabled: true
+
   datasource:
     url: jdbc:mysql://mysql:3306/cms?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: clinic_user
@@ -26,7 +41,7 @@ spring:
     open-in-view: false
 
   mongodb:
-    uri: mongodb://clinic_user:clinic_pass@mongodb:27017/cms?authSource=admin
+    uri: mongodb://clinic_user:clinic_pass@mongodb:27017/prescriptions?authSource=admin
     auto-index-creation: true
 
 management:
@@ -41,6 +56,11 @@ management:
       exposure:
         include: health
 
+jwt:
+  secret: 36gENWshLqCFHXsxUAaoxALgStEGZ+qSanlfdrt6KzQ=
+
+api:
+  path: /api/
 
 logging:
   level:

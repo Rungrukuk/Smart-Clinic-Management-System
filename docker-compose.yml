@@ -13,7 +13,7 @@ services:
       MYSQL_PASSWORD: clinic_pass
       MONGO_HOST: mongodb
       MONGO_PORT: 27017
-      MONGO_DB: cms
+      MONGO_DB: prescriptions
       MONGO_USER: clinic_user
       MONGO_PASSWORD: clinic_pass
     depends_on:
@@ -54,7 +54,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: clinic_user
       MONGO_INITDB_ROOT_PASSWORD: clinic_pass
-      MONGO_INITDB_DATABASE: cms
+      MONGO_INITDB_DATABASE: prescriptions
     volumes:
       - mongo_data:/data/db
     healthcheck:

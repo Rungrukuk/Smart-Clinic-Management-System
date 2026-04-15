@@ -26,7 +26,6 @@
             <main class="main-content" id="mainContent">
 
                 <div class="page-heading">
-                    <img src="../assets/images/edit/edit.png" alt="Edit Icon" class="page-icon" />
                     <h2>Update Appointment</h2>
                 </div>
 
@@ -65,39 +64,30 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="appointmentTime">Preferred Time</label>
-                            <select id="appointmentTime" class="input-field select-dropdown">
-                                <option value="">Select time</option>
-                                <option value="am">AM</option>
-                                <option value="pm">PM</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
                             <label for="appointmentStatus">Status</label>
                             <select id="appointmentStatus" class="input-field select-dropdown">
-                                <option value="pending">Pending</option>
-                                <option value="consulted">Consulted</option>
-                                <option value="cancelled">Cancelled</option>
+                                <option value="0">Scheduled</option>
+                                <option value="1">Completed</option>
+                                <option value="2">Cancelled</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="appointmentNotes">Notes</label>
-                            <textarea
-                                id="appointmentNotes"
-                                class="input-field"
-                                placeholder="Any additional notes..."
-                                rows="4"
-                            ></textarea>
+                            <label for="appointmentTime">Time</label>
+                            <select id="appointmentTime" class="input-field select-dropdown">
+                                <option value="">Select time</option>
+                            </select>
                         </div>
 
                         <div class="form-actions">
                             <button type="button" class="button" onclick="submitUpdate()">
                                 Save Changes
                             </button>
-                            <button type="button" class="adminBtn" onclick="history.back()">
-                                Cancel
+                            <button type="button" class="adminBtn" onclick="cancelAndGoBack()">
+                                Cancel Appointment
+                            </button>
+                                <button type="button" class="adminBtn" onclick="history.back()">
+                                Go Back
                             </button>
                         </div>
 

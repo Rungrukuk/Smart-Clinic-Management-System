@@ -40,6 +40,7 @@ const modalTemplates = {
 
   addDoctor: `
     <h2>Add Doctor</h2>
+
     <label for="doctorName">Full Name</label>
     <input type="text" id="doctorName" class="input-field" placeholder="Enter full name" />
 
@@ -55,20 +56,25 @@ const modalTemplates = {
     <label for="doctorMobile">Phone (10 digits)</label>
     <input type="text" id="doctorMobile" class="input-field" placeholder="Enter phone number" />
 
-    <label>Availability</label>
+    <label>Availability (Time Slots)</label>
     <div class="checkbox-group">
-      <label><input type="checkbox" name="availability" value="mon-am" /> Mon AM</label>
-      <label><input type="checkbox" name="availability" value="mon-pm" /> Mon PM</label>
-      <label><input type="checkbox" name="availability" value="tue-am" /> Tue AM</label>
-      <label><input type="checkbox" name="availability" value="tue-pm" /> Tue PM</label>
-      <label><input type="checkbox" name="availability" value="wed-am" /> Wed AM</label>
-      <label><input type="checkbox" name="availability" value="wed-pm" /> Wed PM</label>
-      <label><input type="checkbox" name="availability" value="thu-am" /> Thu AM</label>
-      <label><input type="checkbox" name="availability" value="thu-pm" /> Thu PM</label>
-      <label><input type="checkbox" name="availability" value="fri-am" /> Fri AM</label>
-      <label><input type="checkbox" name="availability" value="fri-pm" /> Fri PM</label>
+
+      <label><input type="checkbox" name="availability" value="09:00-10:00" /> 09:00 - 10:00</label>
+      <label><input type="checkbox" name="availability" value="10:00-11:00" /> 10:00 - 11:00</label>
+      <label><input type="checkbox" name="availability" value="11:00-12:00" /> 11:00 - 12:00</label>
+
+      <label><input type="checkbox" name="availability" value="14:00-15:00" /> 14:00 - 15:00</label>
+      <label><input type="checkbox" name="availability" value="15:00-16:00" /> 15:00 - 16:00</label>
+      <label><input type="checkbox" name="availability" value="16:00-17:00" /> 16:00 - 17:00</label>
+      <label><input type="checkbox" name="availability" value="17:00-18:00" /> 17:00 - 18:00</label>
+      <label><input type="checkbox" name="availability" value="18:00-19:00" /> 18:00 - 19:00</label>
+      <label><input type="checkbox" name="availability" value="19:00-20:00" /> 19:00 - 20:00</label>
+
     </div>
-    <button class="button" onclick="adminAddDoctor()">Add Doctor</button>`
+
+    <button class="button" onclick="adminAddDoctor()">Add Doctor</button>
+  `
+
 };
 
 export function openModal(type) {
